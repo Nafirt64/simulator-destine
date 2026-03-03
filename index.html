@@ -73,16 +73,9 @@
     }
 
     @media (max-width: 640px){
-      .hide-details .col-com{display:none}
-      .hide-details thead th.col-com{display:none}
+      .col-com{display:none}
+      thead th.col-com{display:none}
     }
-
-    .toggleRow{
-      display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-      margin-top:10px;
-    }
-    .toggleRow label{margin:0;color:var(--muted);font-size:12px}
-    .toggleRow input{width:auto}
 
 </style>
 </head>
@@ -162,10 +155,7 @@
     <div class="card">
       <div class="pad">
         <h3 class="sectionTitle">Rezultate</h3>
-        <div class="toggleRow">
-          <input type="checkbox" id="toggleDetails" />
-          <label for="toggleDetails">Afișează detalii comisioane</label>
-        </div>
+
         <div style="overflow:auto;max-height:60vh">
           <table id="tbl">
             <thead>
@@ -347,21 +337,7 @@
   $("btnCSV").addEventListener("click", () => {
     try { const rows = compute(); exportCSV(rows); } catch (e) { alert("Nu pot exporta: date invalide."); console.error(e); }
   });
-
-
-  // Mobile: ascunde detaliile comisioanelor implicit
-  function applyDetailsMode() {
-    const isMobile = window.matchMedia("(max-width: 640px)").matches;
-    const cb = $("toggleDetails");
-    document.body.classList.toggle("hide-details", isMobile && !cb.checked);
-  }
-
-  $("toggleDetails").addEventListener("change", applyDetailsMode);
-  window.addEventListener("resize", applyDetailsMode);
-  applyDetailsMode();
-
-
-  compute();
+compute();
 </script>
 </body>
 </html>
